@@ -1,6 +1,5 @@
-/* C linked list implementation. */
 #include <stdlib.h>
-#include "ll.h"
+#include <ll/ll.h>
 
 LinkedList *
 ll_create(void)
@@ -90,5 +89,70 @@ ll_insert(LinkedList *l, unsigned int n, void *data)
 
 	++l->len;
 	return 0 ;
+}
+
+int
+ll_swap(LinkedList *l, unsigned int i1, unsigned int i2)
+{
+	int i;
+	int min;
+	LinkedListEl *el,
+		*el1, *el2,
+		*els1, *els2,
+		*elss1, *elss2;
+
+	if(i1 == i2)
+		return 0 ;
+
+	if(i1 >= l->len || i2 >= l->len )
+		return 1 ;
+
+
+	el1 = l->first ;
+	for(i=0 ; i<i1 ; ++i)
+		el1 = el1->next ;
+
+	el2 = l->first ;
+	for(i=0 ; i<i2 ; ++i)
+		el2 = el2->next ;
+
+	els1 = el1->next ;
+	els2 = el2->next ;
+
+	elss1 = els1 ? els1->next : 0 ;
+	elss2 = els2 ? els2->next : 0 ;
+
+	if(abs(i1-i2) == 1){
+		if(i1<i2){
+			el1->next = els2 ;
+			els2->next = els1 ;
+			els1->next = elss2 ;
+		} else {
+			el2->next = els1 ;
+			els1->next = els2 ;
+			els2->next = elss1 ;
+		}
+	} else {
+		el1->next = els2 ;
+		el2->next = els1 ;
+
+		els1->next = elss2 ;
+		els2->next = elss1 ;
+	}
+
+	return 0 ;
+}
+
+void
+ll_bubbleSort(LinkedList *l, int (*fn)(void *, void *))
+{
+	int i, j;
+	for(i=0 ; i<l->len - 1 ; ++i){
+		for(j=0 ; j<l->len - 1 - i ; ++j){
+			if(fn(ll_at(l, j), ll_at(l, j+1)) > 0){
+			   ll_swap(l, j, j+1);
+			}
+		}
+	}
 }
 

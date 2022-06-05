@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ll.h"
+#include <ll/ll.h>
 
 void
 printEls(LinkedList *l)

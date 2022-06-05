@@ -20,5 +20,7 @@ void ll_push(LinkedList *l, void *data);
 void *ll_at(LinkedList *l, unsigned int n);
 int ll_insert(LinkedList *l, unsigned int n, void *data);
 int ll_remove(LinkedList *l, unsigned int n);
+int ll_swap(LinkedList *l, unsigned int i1, unsigned int i2);
+void ll_bubbleSort(LinkedList *l, int (*fn)(void *, void *));
 
 #endif /* __LL_H */
