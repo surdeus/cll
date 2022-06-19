@@ -95,11 +95,9 @@ int
 ll_swap(LinkedList *l, unsigned int i1, unsigned int i2)
 {
 	int i;
-	int min;
-	LinkedListEl *el,
-		*el1, *el2,
-		*els1, *els2,
-		*elss1, *elss2;
+
+	LinkedListEl *el1, *el2;
+	void *v;
 
 	if(i1 == i2)
 		return 0 ;
@@ -109,36 +107,16 @@ ll_swap(LinkedList *l, unsigned int i1, unsigned int i2)
 
 
 	el1 = l->first ;
-	for(i=0 ; i<i1 ; ++i)
+	for(i=0 ; i<=i1 ; ++i)
 		el1 = el1->next ;
 
 	el2 = l->first ;
-	for(i=0 ; i<i2 ; ++i)
+	for(i=0 ; i<=i2 ; ++i)
 		el2 = el2->next ;
 
-	els1 = el1->next ;
-	els2 = el2->next ;
-
-	elss1 = els1 ? els1->next : 0 ;
-	elss2 = els2 ? els2->next : 0 ;
-
-	if(abs(i1-i2) == 1){
-		if(i1<i2){
-			el1->next = els2 ;
-			els2->next = els1 ;
-			els1->next = elss2 ;
-		} else {
-			el2->next = els1 ;
-			els1->next = els2 ;
-			els2->next = elss1 ;
-		}
-	} else {
-		el1->next = els2 ;
-		el2->next = els1 ;
-
-		els1->next = elss2 ;
-		els2->next = elss1 ;
-	}
+	v = el1->data ;
+	el1->data = el2->data ;
+	el2->data = v ;
 
 	return 0 ;
 }
