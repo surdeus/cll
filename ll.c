@@ -122,6 +122,17 @@ ll_swap(LinkedList *l, unsigned int i1, unsigned int i2)
 }
 
 void
+ll_reverse(LinkedList *l)
+{
+	int i, end, len;
+	end = l->len / 2 ;
+	len = l->len ;
+	for(i=0 ; i<end ; ++i){
+		ll_swap(l, i, len-1-i);
+	}
+}
+
+void
 ll_bubbleSort(LinkedList *l, int (*fn)(void *, void *))
 {
 	int i, j;

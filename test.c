@@ -24,13 +24,15 @@ main(int argc, char *argv[])
 	printEls(l);
 	ll_append(l, &a[1]);
 	printEls(l);
-	ll_push(l, &a[1]);
+	ll_push(l, &a[4]);
 	printEls(l);
 	ll_insert(l, 0, &a[2]);
 	printEls(l);
 	ll_insert(l, 4, &a[3]);
 	printEls(l);
 	ll_swap(l, 0, 4);
+	printEls(l);
+	ll_reverse(l);
 	printEls(l);
 	ll_remove(l, 1);
 	printEls(l);
